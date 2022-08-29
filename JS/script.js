@@ -24,7 +24,7 @@ for (let i = 0; i < buttons.length; i++) {
       empty = empty + '*'
       input.value = empty;
     } else if (digit === "/") {
-        if(mark.includes(empty[empty.length - 1])){ return }
+      if(mark.includes(empty[empty.length - 1])){ return }
       empty += digit;
       input.value = empty;
     } else if(digit === 'DEL'){
@@ -33,6 +33,7 @@ for (let i = 0; i < buttons.length; i++) {
         input.value = empty
     }
     else if (digit === "=") {
+      if(!empty) return
       let sum = eval(empty);
       input.value = sum;
       empty = "";
@@ -49,6 +50,8 @@ for (let i = 0; i < buttons.length; i++) {
 
 input.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
+    if(e.code === 'NumpadEnter' && !empty) return
+    console.log(empty)
     let sum = eval(empty);
     input.value = sum;
     return (empty = "");
